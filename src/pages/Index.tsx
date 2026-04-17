@@ -1,4 +1,5 @@
 import TopBar from "@/components/TopBar";
+import { PageTransition } from "@/components/motion/Motion";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import MissionSection from "@/components/MissionSection";
@@ -12,7 +13,7 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen overflow-x-clip">
+    <PageTransition><div className="min-h-screen overflow-x-clip">
       <div className="sticky top-0 z-50">
         <TopBar />
         <Navbar />
@@ -27,7 +28,7 @@ const Index = () => {
       <CTASection />
       <Footer />
     </div>
-  );
+  </PageTransition>);
 };
 
 export default Index;

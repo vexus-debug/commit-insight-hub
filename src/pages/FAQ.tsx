@@ -1,4 +1,5 @@
 import TopBar from "@/components/TopBar";
+import { PageTransition } from "@/components/motion/Motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useSiteContent } from "@/contexts/SiteContentContext";
@@ -10,7 +11,7 @@ const FAQPage = () => {
   const f = content.faq;
 
   return (
-    <div className="min-h-screen">
+    <PageTransition><div className="min-h-screen">
       <TopBar />
       <Navbar />
 
@@ -59,7 +60,7 @@ const FAQPage = () => {
 
       <Footer />
     </div>
-  );
+  </PageTransition>);
 };
 
 export default FAQPage;

@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import { Footprints, Stethoscope, Accessibility, Users2, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -6,6 +5,7 @@ import prostheticImg from "@/assets/bestojis-prosthetic-walking.jpg";
 import conferenceImg from "@/assets/bestojis-conference-team.jpg";
 import clubfootImg from "@/assets/bestojis-clubfoot-1.jpg";
 import teamImg from "@/assets/bestojis-team.jpg";
+import { Reveal } from "@/components/motion/Motion";
 
 const steps = [
   {
@@ -50,60 +50,25 @@ const steps = [
   },
 ];
 
-function useInView(ref: React.RefObject<HTMLElement | null>, threshold = 0.15) {
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
-      { threshold }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [ref, threshold]);
-  return visible;
-}
-
-const StepCard = ({
-  step,
-  index,
-}: {
-  step: (typeof steps)[number];
-  index: number;
-}) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const visible = useInView(ref, 0.15);
+const StepCard = ({ step, index }: { step: (typeof steps)[number]; index: number }) => {
   const isEven = index % 2 === 0;
   const stepNumber = String(index + 1).padStart(2, "0");
   const Icon = step.icon;
 
   return (
-    <article
-      ref={ref}
-      className={`grid md:grid-cols-12 gap-8 md:gap-12 items-center transition-all duration-700 ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-      }`}
-    >
-      {/* Image */}
-      <div className={`md:col-span-7 ${isEven ? "" : "md:order-2"}`}>
+    <article className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+      <Reveal direction={isEven ? "right" : "left"} className={`md:col-span-7 ${isEven ? "" : "md:order-2"}`}>
         <div className="relative overflow-hidden rounded-lg border border-border bg-muted">
           <img
             src={step.image}
             alt={step.title}
-            className="w-full object-cover aspect-[16/10]"
+            className="w-full object-cover aspect-[16/10] transition-transform duration-700 hover:scale-105"
             loading="lazy"
           />
         </div>
-      </div>
+      </Reveal>
 
-      {/* Text */}
-      <div className={`md:col-span-5 ${isEven ? "" : "md:order-1"}`}>
+      <Reveal direction={isEven ? "left" : "right"} delay={0.1} className={`md:col-span-5 ${isEven ? "" : "md:order-1"}`}>
         <div className="flex items-center gap-4 mb-5">
           <span className="font-heading text-sm font-semibold text-muted-foreground tabular-nums tracking-wider">
             {stepNumber} / 04
@@ -134,7 +99,7 @@ const StepCard = ({
             {step.statLabel}
           </span>
         </div>
-      </div>
+      </Reveal>
     </article>
   );
 };
@@ -143,8 +108,7 @@ const JourneySection = () => {
   return (
     <section className="journey-section py-24 md:py-32 bg-background">
       <div className="container mx-auto px-4 max-w-6xl">
-        {/* Header */}
-        <div className="max-w-2xl mb-20">
+        <Reveal direction="up" className="max-w-2xl mb-20">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-4">
             The Journey
           </p>
@@ -156,17 +120,15 @@ const JourneySection = () => {
             identifying the need to creating lasting change in communities across
             Nigeria.
           </p>
-        </div>
+        </Reveal>
 
-        {/* Steps */}
         <div className="space-y-20 md:space-y-28">
           {steps.map((step, i) => (
             <StepCard key={step.label} step={step} index={i} />
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-24 md:mt-32 pt-12 border-t border-border flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <Reveal direction="up" className="mt-24 md:mt-32 pt-12 border-t border-border flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
             <h3 className="font-heading text-2xl md:text-3xl font-semibold text-foreground tracking-tight mb-2">
               Be part of the next chapter.
@@ -177,7 +139,7 @@ const JourneySection = () => {
           </div>
           <div className="flex flex-col sm:flex-row gap-3 shrink-0">
             <Link to="/donate">
-              <Button className="group bg-primary text-primary-foreground hover:bg-primary/90 rounded-md px-6 h-11 text-sm font-medium">
+              <Button className="group bg-primary text-primary-foreground hover:bg-primary/90 rounded-md px-6 h-11 text-sm font-medium transition-transform duration-300 hover:-translate-y-0.5">
                 Donate
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
               </Button>
@@ -185,14 +147,14 @@ const JourneySection = () => {
             <Link to="/get-involved">
               <Button
                 variant="outline"
-                className="rounded-md border-border text-foreground hover:bg-muted px-6 h-11 text-sm font-medium"
+                className="rounded-md border-border text-foreground hover:bg-muted px-6 h-11 text-sm font-medium transition-transform duration-300 hover:-translate-y-0.5"
               >
                 Get Involved
               </Button>
             </Link>
           </div>
+        </Reveal>
         </div>
-      </div>
     </section>
   );
 };

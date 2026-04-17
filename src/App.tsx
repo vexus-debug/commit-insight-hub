@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -40,6 +41,50 @@ import AdminPrivacyPage from "./pages/admin/AdminPrivacyPage.tsx";
 
 const queryClient = new QueryClient();
 
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Index />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/programs" element={<Programs />} />
+        <Route path="/donate" element={<Donate />} />
+        <Route path="/get-involved" element={<GetInvolved />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/news/:slug" element={<NewsArticle />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/faq" element={<FAQPage />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/careers" element={<Careers />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        {/* Admin Routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="global" element={<AdminGlobalSettings />} />
+          <Route path="home" element={<AdminHomePage />} />
+          <Route path="about" element={<AdminAboutPage />} />
+          <Route path="programs" element={<AdminProgramsPage />} />
+          <Route path="gallery" element={<AdminGalleryPage />} />
+          <Route path="contact" element={<AdminContactPage />} />
+          <Route path="donate" element={<AdminDonatePage />} />
+          <Route path="get-involved" element={<AdminGetInvolvedPage />} />
+          <Route path="news" element={<AdminNewsPage />} />
+          <Route path="faq" element={<AdminFAQPage />} />
+          <Route path="events" element={<AdminEventsPage />} />
+          <Route path="careers" element={<AdminCareersPage />} />
+          <Route path="terms" element={<AdminTermsPage />} />
+          <Route path="privacy" element={<AdminPrivacyPage />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <SiteContentProvider>
@@ -48,42 +93,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/programs" element={<Programs />} />
-            <Route path="/donate" element={<Donate />} />
-            <Route path="/get-involved" element={<GetInvolved />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/news/:slug" element={<NewsArticle />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/faq" element={<FAQPage />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/careers" element={<Careers />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/privacy" element={<Privacy />} />
-            {/* Admin Routes */}
-            <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/admin" element={<AdminLayout />}>
-              <Route index element={<AdminDashboard />} />
-              <Route path="global" element={<AdminGlobalSettings />} />
-              <Route path="home" element={<AdminHomePage />} />
-              <Route path="about" element={<AdminAboutPage />} />
-              <Route path="programs" element={<AdminProgramsPage />} />
-              <Route path="gallery" element={<AdminGalleryPage />} />
-              <Route path="contact" element={<AdminContactPage />} />
-              <Route path="donate" element={<AdminDonatePage />} />
-              <Route path="get-involved" element={<AdminGetInvolvedPage />} />
-              <Route path="news" element={<AdminNewsPage />} />
-              <Route path="faq" element={<AdminFAQPage />} />
-              <Route path="events" element={<AdminEventsPage />} />
-              <Route path="careers" element={<AdminCareersPage />} />
-              <Route path="terms" element={<AdminTermsPage />} />
-              <Route path="privacy" element={<AdminPrivacyPage />} />
-            </Route>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AnimatedRoutes />
         </BrowserRouter>
       </TooltipProvider>
     </SiteContentProvider>

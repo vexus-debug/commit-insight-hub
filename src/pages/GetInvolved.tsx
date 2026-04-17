@@ -1,4 +1,5 @@
 import TopBar from "@/components/TopBar";
+import { PageTransition } from "@/components/motion/Motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -95,7 +96,7 @@ const upcomingEvents = [
 
 const GetInvolved = () => {
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <PageTransition><div className="min-h-screen overflow-x-hidden">
       <TopBar />
       <Navbar />
 
@@ -357,7 +358,7 @@ const GetInvolved = () => {
 
       <Footer />
     </div>
-  );
+  </PageTransition>);
 };
 
 export default GetInvolved;

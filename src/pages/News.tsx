@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { PageTransition } from "@/components/motion/Motion";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,7 +10,7 @@ const News = () => {
   const { news } = content;
 
   return (
-    <div className="min-h-screen">
+    <PageTransition><div className="min-h-screen">
       <TopBar />
       <Navbar />
 
@@ -51,7 +52,7 @@ const News = () => {
 
       <Footer />
     </div>
-  );
+  </PageTransition>);
 };
 
 export default News;

@@ -1,4 +1,5 @@
 import TopBar from "@/components/TopBar";
+import { PageTransition } from "@/components/motion/Motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -10,7 +11,7 @@ const Donate = () => {
   const d = content.donate;
 
   return (
-    <div className="min-h-screen">
+    <PageTransition><div className="min-h-screen">
       <TopBar />
       <Navbar />
 
@@ -90,7 +91,7 @@ const Donate = () => {
 
       <Footer />
     </div>
-  );
+  </PageTransition>);
 };
 
 export default Donate;

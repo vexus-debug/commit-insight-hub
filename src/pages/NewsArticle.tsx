@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { PageTransition } from "@/components/motion/Motion";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -13,7 +14,7 @@ const NewsArticle = () => {
 
   if (!story) {
     return (
-      <div className="min-h-screen">
+      <PageTransition><div className="min-h-screen">
         <TopBar />
         <Navbar />
         <div className="container mx-auto px-4 py-20 text-center">
@@ -27,12 +28,12 @@ const NewsArticle = () => {
           </Link>
         </div>
         <Footer />
-      </div>
+      </div></PageTransition>
     );
   }
 
   return (
-    <div className="min-h-screen">
+    <PageTransition><div className="min-h-screen">
       <TopBar />
       <Navbar />
 
@@ -72,7 +73,7 @@ const NewsArticle = () => {
 
       <Footer />
     </div>
-  );
+  </PageTransition>);
 };
 
 export default NewsArticle;
