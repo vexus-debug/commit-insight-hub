@@ -28,12 +28,12 @@ const NewsArticle = () => {
           </Link>
         </div>
         <Footer />
-      </div>
+      </div></PageTransition>
     );
   }
 
   return (
-    <div className="min-h-screen">
+    <PageTransition><div className="min-h-screen">
       <TopBar />
       <Navbar />
 
