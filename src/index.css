@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand palette
+       Primary  Royal Purple   #4B2E83 -> 260 48% 35%
+       Secondary Forest Green  #1F7A5A -> 158 60% 30%
+       Accent   Copper         #C76B2B -> 22 64% 47%
+       Background Warm White   #F7F8FA -> 220 20% 97%
+       Charcoal               #2E2E2E -> 0 0% 18%
+    */
+    --background: 220 20% 97%;
+    --foreground: 0 0% 18%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 18%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 18%;
+
+    --primary: 265 55% 32%;
+    --primary-foreground: 220 20% 98%;
+    --primary-glow: 270 65% 62%;
+    --primary-deep: 265 60% 18%;
+
+    --secondary: 158 60% 30%;
+    --secondary-foreground: 220 20% 98%;
+
+    --muted: 220 16% 93%;
+    --muted-foreground: 0 0% 35%;
+
+    --accent: 22 64% 47%;
+    --accent-foreground: 220 20% 98%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 14% 88%;
+    --input: 220 14% 88%;
+    --ring: 260 48% 35%;
+
+    --radius: 0.625rem;
+
+    --topbar: 260 40% 18%;
+    --topbar-foreground: 220 20% 95%;
+
+    --navbar: 260 48% 28%;
+    --navbar-foreground: 220 20% 97%;
+
+    --hero-overlay: 260 45% 14%;
+
+    --section-alt: 158 50% 22%;
+    --section-alt-foreground: 220 20% 97%;
+
+    --cta: 22 64% 47%;
+    --cta-foreground: 220 20% 98%;
+
+    --sidebar-background: 220 20% 98%;
+    --sidebar-foreground: 0 0% 22%;
+    --sidebar-primary: 260 48% 35%;
+    --sidebar-primary-foreground: 220 20% 98%;
+    --sidebar-accent: 220 16% 93%;
+    --sidebar-accent-foreground: 0 0% 18%;
+    --sidebar-border: 220 14% 88%;
+    --sidebar-ring: 260 48% 35%;
+
+    --admin-sidebar: 260 45% 16%;
+    --admin-sidebar-foreground: 220 20% 92%;
+    --admin-sidebar-active: 260 48% 35%;
+    --admin-surface: 220 20% 98%;
+    --admin-card-hover: 260 30% 95%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(265 55% 28%), hsl(270 65% 55%));
+    --gradient-accent: linear-gradient(135deg, hsl(22 64% 47%), hsl(22 70% 60%));
+    --gradient-hero: linear-gradient(120deg, hsl(265 60% 18% / 0.92) 0%, hsl(265 55% 28% / 0.75) 45%, hsl(265 50% 30% / 0.2) 100%);
+    --surface-dark: 265 55% 16%;
+    --shadow-elegant: 0 12px 40px -16px hsl(260 48% 25% / 0.28);
+    --shadow-soft: 0 4px 18px -8px hsl(0 0% 18% / 0.12);
+
+    --font-heading: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    --font-body: 'Inter', 'Helvetica Neue', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .bg-gradient-accent {
+    background-image: var(--gradient-accent);
+  }
+  .bg-gradient-hero {
+    background-image: var(--gradient-hero);
+  }
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+}
+
+@layer utilities {
+  /* Tighten global vertical rhythm so the site feels less scattered.
+     Overrides Tailwind defaults for the most-used large spacing utilities. */
+  .py-32 { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+  .py-28 { padding-top: 4rem; padding-bottom: 4rem; }
+  .py-24 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  .py-20 { padding-top: 3rem; padding-bottom: 3rem; }
+  .py-16 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+
+  .mb-24 { margin-bottom: 3.5rem; }
+  .mb-20 { margin-bottom: 3rem; }
+  .mb-16 { margin-bottom: 2.25rem; }
+
+  .gap-16 { gap: 2.5rem; }
+  .gap-12 { gap: 2rem; }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section + section {
+  position: relative;
+}
+
+.journey-section {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--background)) 0%,
+    hsl(220 16% 94% / 0.7) 30%,
+    hsl(220 16% 94% / 0.7) 70%,
+    hsl(var(--background)) 100%
+  );
+}
