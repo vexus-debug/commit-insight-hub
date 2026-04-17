@@ -1,4 +1,5 @@
 import TopBar from "@/components/TopBar";
+import { PageTransition } from "@/components/motion/Motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -35,7 +36,7 @@ const values = [
 
 const About = () => {
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <PageTransition><div className="min-h-screen overflow-x-hidden">
       <TopBar />
       <Navbar />
 
@@ -281,7 +282,7 @@ const About = () => {
 
       <Footer />
     </div>
-  );
+  </PageTransition>);
 };
 
 export default About;

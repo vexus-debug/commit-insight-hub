@@ -1,4 +1,5 @@
 import TopBar from "@/components/TopBar";
+import { PageTransition } from "@/components/motion/Motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -45,7 +46,7 @@ const Gallery = () => {
     : allImages.filter((img) => img.category.includes(activeFilter as Category));
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <PageTransition><div className="min-h-screen flex flex-col">
       <TopBar />
       <Navbar />
       <PageHero
@@ -142,7 +143,7 @@ const Gallery = () => {
 
       <Footer />
     </div>
-  );
+  </PageTransition>);
 };
 
 export default Gallery;

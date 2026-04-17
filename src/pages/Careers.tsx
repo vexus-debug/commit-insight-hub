@@ -1,4 +1,5 @@
 import TopBar from "@/components/TopBar";
+import { PageTransition } from "@/components/motion/Motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useSiteContent } from "@/contexts/SiteContentContext";
@@ -10,7 +11,7 @@ const Careers = () => {
   const c = content.careers;
 
   return (
-    <div className="min-h-screen">
+    <PageTransition><div className="min-h-screen">
       <TopBar />
       <Navbar />
 
@@ -71,7 +72,7 @@ const Careers = () => {
 
       <Footer />
     </div>
-  );
+  </PageTransition>);
 };
 
 export default Careers;

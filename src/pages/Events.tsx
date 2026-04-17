@@ -1,4 +1,5 @@
 import TopBar from "@/components/TopBar";
+import { PageTransition } from "@/components/motion/Motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useSiteContent } from "@/contexts/SiteContentContext";
@@ -9,7 +10,7 @@ const Events = () => {
   const ev = content.events;
 
   return (
-    <div className="min-h-screen">
+    <PageTransition><div className="min-h-screen">
       <TopBar />
       <Navbar />
 
@@ -52,7 +53,7 @@ const Events = () => {
 
       <Footer />
     </div>
-  );
+  </PageTransition>);
 };
 
 export default Events;
