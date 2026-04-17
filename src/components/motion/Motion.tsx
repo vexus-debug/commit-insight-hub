@@ -17,7 +17,7 @@ const buildVariant = (dir: Direction): Variants => {
       opacity: 1,
       x: 0,
       y: 0,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.6, ease: 'easeOut' },
     },
   };
 };
@@ -119,7 +119,7 @@ export function PageTransition({ children, className }: { children: ReactNode; c
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
-      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
     >
       {children}
     </motion.div>
