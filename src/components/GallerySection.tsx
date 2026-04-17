@@ -4,6 +4,7 @@ import img3 from "@/assets/bestojis-clubfoot-1.jpg";
 import img4 from "@/assets/bestojis-clubfoot-2.jpg";
 import img5 from "@/assets/bestojis-prosthetic-walking.jpg";
 import { useSiteContent } from "@/contexts/SiteContentContext";
+import { Reveal, Stagger, Item } from "@/components/motion/Motion";
 
 const defaultImages = [
   { src: img1, alt: "Bestojis prosthetist holding a custom-made prosthetic limb", caption: "Custom Prosthetic Limb" },
@@ -20,7 +21,7 @@ const GallerySection = () => {
   return (
     <section className="py-20 bg-muted/50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <Reveal direction="up" className="text-center mb-12">
           <span className="text-accent text-sm font-semibold uppercase tracking-wider">{gs.sectionLabel}</span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mt-2">
             {gs.title}
@@ -28,10 +29,10 @@ const GallerySection = () => {
           <p className="text-muted-foreground mt-3 max-w-lg mx-auto text-sm">
             {gs.subtitle}
           </p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        </Reveal>
+        <Stagger className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4" stagger={0.07}>
           {defaultImages.map((img, i) => (
-            <div
+            <Item
               key={i}
               className={`rounded-2xl overflow-hidden relative group ${i === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
             >
@@ -43,9 +44,9 @@ const GallerySection = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                 <span className="text-primary-foreground text-sm font-medium">{img.caption}</span>
               </div>
-            </div>
+            </Item>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );
